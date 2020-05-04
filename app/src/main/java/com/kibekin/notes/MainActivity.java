@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
         private RecyclerView recyclerViewNotes;
-        private static final ArrayList<Note> notes = new ArrayList<>();
+        static final ArrayList<Note> notes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +24,15 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerViewNotes = findViewById(R.id.recyclerViewNotes);
 
-        notes.add(new Note("Парикмахерская", "Сделать прическу", "Понедельник", 2));
-        notes.add(new Note("Баскетбол", "Игра со школьной командой", "Вторник", 3));
-        notes.add(new Note("Магазин", "Купить новые джинсы", "Понедельник", 3));
-        notes.add(new Note("Магазин", "Купить новые шорты", "Понедельник", 2));
-        notes.add(new Note("Стоматолог", "Вылечить зубы", "Понедельник", 2));
-        notes.add(new Note("Парикмахер", "Сделать прическу к выпускному", "Вторник", 1));
-        notes.add(new Note("Баскетбол", "Игра с дворовой командой", "Среда", 1));
+        if (notes.isEmpty()) {
+            notes.add(new Note("Парикмахерская", "Сделать прическу", "Понедельник", 2));
+            notes.add(new Note("Баскетбол", "Игра со школьной командой", "Вторник", 3));
+            notes.add(new Note("Магазин", "Купить новые джинсы", "Понедельник", 3));
+            notes.add(new Note("Магазин", "Купить новые шорты", "Понедельник", 2));
+            notes.add(new Note("Стоматолог", "Вылечить зубы", "Понедельник", 2));
+            notes.add(new Note("Парикмахер", "Сделать прическу к выпускному", "Вторник", 1));
+            notes.add(new Note("Баскетбол", "Игра с дворовой командой", "Среда", 1));
+        }
 
         NotesAdapter adapter = new NotesAdapter(notes);
         recyclerViewNotes.setLayoutManager(new LinearLayoutManager(this ));
