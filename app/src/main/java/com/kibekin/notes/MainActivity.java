@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -33,5 +34,9 @@ public class MainActivity extends AppCompatActivity {
         NotesAdapter adapter = new NotesAdapter(notes);
         recyclerViewNotes.setLayoutManager(new LinearLayoutManager(this ));
         recyclerViewNotes.setAdapter(adapter);
+    }
+
+    public void onClickAddNote(View view) {
+
     }
 }
