@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-        private RecyclerView recyclerViewNotes;
-        static final ArrayList<Note> notes = new ArrayList<>();
-        private NotesAdapter adapter;
+    private RecyclerView recyclerViewNotes;
+    static final ArrayList<Note> notes = new ArrayList<>();
+    private NotesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         adapter = new NotesAdapter(notes);
-        recyclerViewNotes.setLayoutManager(new LinearLayoutManager(this ));
+        recyclerViewNotes.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewNotes.setAdapter(adapter);
         adapter.setOnNoteClickListener(new NotesAdapter.OnNoteClickListener() {
             @Override
@@ -65,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
         });
         itemTouchHelper.attachToRecyclerView(recyclerViewNotes);
     }
-    private void remove(int position){
+
+    private void remove(int position) {
         notes.remove(position);
         adapter.notifyDataSetChanged();
     }
