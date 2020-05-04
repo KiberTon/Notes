@@ -14,9 +14,19 @@ import java.util.ArrayList;
 public class NotesAdapter  extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
 
     private ArrayList<Note> notes;
+    private OnNoteClickListener onNoteClickListener;
 
-    public NotesAdapter(ArrayList<Note> notes) {
+    NotesAdapter(ArrayList<Note> notes) {
         this.notes = notes;
+    }
+
+    interface OnNoteClickListener{
+        void onNoteClick(int position);
+        void onLongClick(int position);
+    }
+
+     void setOnNoteClickListener(OnNoteClickListener onNoteClickListener) {
+        this.onNoteClickListener = onNoteClickListener;
     }
 
     @NonNull
@@ -53,7 +63,7 @@ public class NotesAdapter  extends RecyclerView.Adapter<NotesAdapter.NotesViewHo
         return notes.size();
     }
 
-    static class NotesViewHolder extends RecyclerView.ViewHolder {
+     class NotesViewHolder extends RecyclerView.ViewHolder {
 
        private TextView textViewTitle;
        private TextView textViewDescription;
@@ -64,6 +74,23 @@ public class NotesAdapter  extends RecyclerView.Adapter<NotesAdapter.NotesViewHo
            textViewTitle = itemView.findViewById(R.id.textViewTitle);
            textViewDescription = itemView.findViewById(R.id.textViewDescription);
            textViewDayOfWeek = itemView.findViewById(R.id.textViewDayOfWeek);
+           itemView.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   if (onNoteClickListener != null) {
+                       onNoteClickListener.onNoteClick(getAdapterPosition());
+                   }
+               }
+           });
+           itemView.setOnLongClickListener(new View.OnLongClickListener() {
+               @Override
+               public boolean onLongClick(View view) {
+                   if (onNoteClickListener != null) {
+                       onNoteClickListener.onLongClick(getAdapterPosition());
+                   }
+                   return true;
+               }
+           });
        }
    }
 
