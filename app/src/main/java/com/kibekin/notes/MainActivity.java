@@ -75,16 +75,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void getData(){
-       LiveData<List<Note>> notesFromDB = databese.notesDao().getAllNotes();
-       notesFromDB.observe(this, new Observer<List<Note>>() {
-           @Override
-           public void onChanged(List<Note> notesFromLiveData) {
-               notes.clear();
-               notes.addAll(notesFromLiveData);
-               adapter.notifyDataSetChanged();
-           }
-       });
+    private void getData() {
+        LiveData<List<Note>> notesFromDB = databese.notesDao().getAllNotes();
+        notesFromDB.observe(this, new Observer<List<Note>>() {
+            @Override
+            public void onChanged(List<Note> notesFromLiveData) {
+                notes.clear();
+                notes.addAll(notesFromLiveData);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
     }
 
