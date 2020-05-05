@@ -1,17 +1,37 @@
 package com.kibekin.notes;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "notes")
 public class Note {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String title;
     private String description;
-    private String dayOfWeek;
+    private int dayOfWeek;
     private int priority;
 
-    public Note(String title, String description, String dayOfWeek, int priority) {
+    public Note(int id, String title, String description, int dayOfWeek, int priority) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.dayOfWeek = dayOfWeek;
         this.priority = priority;
+    }
+
+    @Ignore
+    public Note(String title, String description, int dayOfWeek, int priority) {
+        this.title = title;
+        this.description = description;
+        this.dayOfWeek = dayOfWeek;
+        this.priority = priority;
+    }
+
+    public int getId(){
+        return id;
     }
 
     public String getTitle() {
@@ -30,11 +50,11 @@ public class Note {
         this.description = description;
     }
 
-    public String getDayOfWeek() {
+    public int getDayOfWeek() {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(String dayOfWeek) {
+    public void setDayOfWeek(int dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 
@@ -44,5 +64,28 @@ public class Note {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public static String getDayAsString(int position){
+        switch (position){
+            case 1:
+                return "Понедельник";
+            case 2:
+                return "Вторник";
+            case 3:
+                return "Среда";
+            case 4:
+                return "Четверг";
+            case 5:
+                return "Пятница";
+            case 6:
+                return "Суббота";
+            default:
+                return "Воскресенье";
+        }
     }
 }
